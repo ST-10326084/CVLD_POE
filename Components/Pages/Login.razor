@@ -1,0 +1,43 @@
+﻿@page "/login"
+@using System.ComponentModel.DataAnnotations
+
+<link href="css/Signup.css" rel="stylesheet" />
+
+<h3>Login</h3>
+
+<EditForm Model="loginUser" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="username">Username:</label>
+        <InputText id="username" @bind-Value="loginUser.Username" />
+    </div>
+
+    <div>
+        <label for="password">Password:</label>
+        <InputText id="password" @bind-Value="loginUser.Password" type="password" />
+    </div>
+
+    <button type="submit">Login</button>
+</EditForm>
+
+@code {
+    private LoginUser loginUser = new LoginUser();
+
+    private void HandleLogin()
+    {
+        // Validate login credentials against the database
+        Console.WriteLine("User logged in successfully!");
+        // Implement your authentication logic here
+    }
+
+    private class LoginUser
+    {
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+    }
+}
