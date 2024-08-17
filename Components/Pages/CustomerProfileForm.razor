@@ -1,0 +1,44 @@
+﻿@page "/customer-profile"
+@using CVLD_POE.Components.Models
+
+<link href="css/ProfilePage.css" rel="stylesheet" />
+
+<h3>Create Customer Profile</h3>
+
+<EditForm Model="customer" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="firstName">First Name:</label>
+        <InputText id="firstName" @bind-Value="customer.FirstName" />
+    </div>
+
+    <div>
+        <label for="lastName">Last Name:</label>
+        <InputText id="lastName" @bind-Value="customer.LastName" />
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <InputText id="email" @bind-Value="customer.Email" />
+    </div>
+
+    <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <InputText id="phoneNumber" @bind-Value="customer.PhoneNumber" />
+    </div>
+
+    <button type="submit">Save Profile</button>
+</EditForm>
+
+@code {
+    private CustomerProfile customer = new CustomerProfile();
+
+    private void HandleValidSubmit()
+    {
+        // Handle saving the customer profile (e.g., save to Azure Table Storage)
+        Console.WriteLine("Customer profile saved!");
+        // Implement your storage logic here
+    }
+}

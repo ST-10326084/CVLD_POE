@@ -1,0 +1,37 @@
+﻿@page "/product"
+@using CVLD_POE.Components.Models
+
+<link href="css/ProductPage.css" rel="stylesheet" />
+
+<div class="product-page">
+    <h2>Our Collection</h2>
+    <div class="product-grid">
+        @foreach (var product in products)
+        {
+            <div class="product-card">
+                <img src="@product.ImageUrl" alt="@product.Name" />
+                <h3>@product.Name</h3>
+                <p>@product.Description</p>
+                <p class="price">@product.Price.ToString("C")</p>
+                <button>Add to Cart</button>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<Product> products = new List<Product>
+    {
+        new Product { Name = "Classic Tee", Description = "Simple yet stylish.", Price = 19.99M, ImageUrl = "images/classic-tee.jpg" },
+        new Product { Name = "Denim Jacket", Description = "Perfect for any season.", Price = 49.99M, ImageUrl = "images/denim-jacket.jpg" },
+        // Add more products here...
+    };
+
+    private class Product
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public string ImageUrl { get; set; }
+    }
+}
